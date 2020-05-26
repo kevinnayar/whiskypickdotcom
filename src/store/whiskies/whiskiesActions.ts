@@ -1,4 +1,5 @@
 import firebase from '../../config/firebase';
+import { sortWhiskies } from '../../components/WhiskyFilters/WhiskyFilters';
 import {
   WHISKIES_GET_ALL_REQUESTED,
   WHISKIES_GET_ALL_SUCCEEDED,
@@ -26,9 +27,10 @@ export function getAllWhiskies() {
     try {
       const items: void | firebase.firestore.DocumentData = await handleGetAllWhiskiesAsync();
       if (items) {
+        const sorted = sortWhiskies(['averageRating', 'Highest Rated', 'DESC'], items as TypeWhisky[]);
         dispatch({
           type: WHISKIES_GET_ALL_SUCCEEDED,
-          payload: items,
+          payload: sorted,
         });
       } else {
         throw new Error('Could not get whiskies');

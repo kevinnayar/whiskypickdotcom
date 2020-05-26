@@ -30,8 +30,15 @@ function WhiskyListContainer(props: TypeProps) {
 
   return (
     <React.Fragment>
-      <WhiskyFilters whiskiesAll={props.whiskiesAll} updateFilteredWhiskies={props.updateFilteredWhiskies} />
-      <WhiskyList getWhiskiesXferStatus={props.getWhiskiesXferStatus} whiskiesFiltered={props.whiskiesFiltered} />
+      <WhiskyFilters
+        whiskiesAll={props.whiskiesAll}
+        whiskiesFiltered={props.whiskiesFiltered}
+        updateFilteredWhiskies={props.updateFilteredWhiskies}
+      />
+      <WhiskyList
+        getWhiskiesXferStatus={props.getWhiskiesXferStatus}
+        whiskiesFiltered={props.whiskiesFiltered}
+      />
     </React.Fragment>
   );
 }

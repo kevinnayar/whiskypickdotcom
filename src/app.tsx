@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './components-core/Header/Header';
 import WhiskyListContainer from './containers/WhiskyListContainer/WhiskyListContainer';
@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route path="/" exact component={WhiskyListContainer} />
+        <Redirect from="/" exact to="/whiskies" />
         <Route path="/whiskies" exact component={WhiskyListContainer} />
         <Route path="/whiskies/:whiskyId" component={WhiskyContainer} />
         <Route path="/users" exact component={UserListContainer} />
