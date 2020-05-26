@@ -1,0 +1,466 @@
+@import 'reset.css';
+
+$cubicBezier: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+$fontsPrimary: 'Montserrat', 'Roboto', Helvetica, Arial, sans-serif;
+$fontsSecondary: 'Roboto', Helvetica, Arial, sans-serif;
+
+$f1: 26px;
+$f2: 22px;
+$f3: 18px;
+$f4: 14px;
+$f5: 12px;
+
+$colorYellow: #ffbe00;
+$colorYellowDark: #edae00;
+
+$colorGrayLight: #e6e8eb;
+$colorGrayMid: #cdcdcd;
+$colorGrayDark: #545454;
+$colorBlack: #121212;
+
+@keyframes spinLoader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 62.5%;
+  margin: 0 auto;
+  padding: 0;
+  font-family: $fontsSecondary;
+  -webkit-font-smoothing: antialiased;
+  color: $colorBlack;
+}
+
+a {
+  color: $colorBlack;
+  text-decoration: none;
+
+  &:hover,
+  &:visited {
+    color: $colorBlack;
+  }
+}
+
+.header,
+.list,
+.item {
+  width: 90%;
+  padding: 0 5%;
+}
+
+.header {
+  height: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid $colorGrayLight;
+  display: flex;
+  z-index: 1;
+
+  .logo,
+  .menu {
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .logo {
+    font-size: $f2;
+    font-family: $fontsPrimary;
+    font-weight: bold;
+    color: $colorYellow;
+    transition: all 0.33s $cubicBezier;
+
+    &:hover {
+      color: $colorYellowDark;
+    }
+  }
+
+  .menu {
+    display: flex;
+    margin: 30px 0 0 auto;
+    height: 40px;
+
+    a {
+      display: flex;
+      margin-left: 20px;
+      transition: all 0.5s $cubicBezier;
+
+      i {
+        line-height: 40px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 16px;
+        background: white;
+        border: 1px solid $colorGrayLight;
+        border-radius: 50%;
+        transition: all 0.33s $cubicBezier;
+      }
+
+      p {
+        display: none;
+      }
+
+      &:hover {
+        i {
+          background: $colorGrayMid;
+          border: 1px solid $colorGrayMid;
+        }
+      }
+    }
+  }
+}
+
+.list,
+.item {
+  margin-top: calc(100px + 5%);
+
+  &.embedded {
+    margin-top: 5%;
+  }
+
+  h2 {
+    font-family: $fontsPrimary;
+    font-size: $f4;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-size: $f5;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .list-item {
+    width: 18%;
+    flex-basis: 18%;
+    margin: 1%;
+
+    > a {
+      background: $colorYellow;
+      display: block;
+
+      .image {
+        width: 100%;
+
+        img {
+          width: 100%;
+          vertical-align: middle
+        }
+      }
+
+      .content {
+        height: 76px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+        .rating {
+          width: 38%;
+          background: $colorYellowDark;
+          height: 76px;
+          line-height: 76px;
+
+          .rating-number {
+            font-family: $fontsPrimary;
+            font-size: $f3;
+            font-weight: bold;
+          }
+
+          .rating-pct {
+            font-size: $f4;
+          }
+        }
+
+        .content-text {
+          width: 62%;
+          padding: 0 5%;
+        }
+      }
+    }
+  }
+
+  .whisky-list-item > a .content .content-text {
+    text-align: left;
+  }
+}
+
+.item {
+  .image {
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    border: 12px solid $colorGrayLight;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      border: 4px solid white;
+      box-sizing: border-box;
+      border-radius: 50%;
+    }
+  }
+
+  .content {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .rating {
+    margin: 20px auto 0;
+    text-align: center;
+
+    .rating-number {
+      font-family: $fontsPrimary;
+      font-size: $f2;
+      font-weight: bold;
+    }
+
+    .rating-pct {
+      font-size: $f3;
+    }
+  }
+}
+
+.chart {
+  height: 280px;
+  display: flex;
+  margin: 20px auto;
+
+  .datum {
+
+    .bar {
+      background: $colorYellow;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin: 0 10%;
+      padding: 0 10%;
+      
+      .text.top {
+        font-family: $fontsPrimary;
+        font-weight: bold;
+        font-size: $f3;
+      }
+
+      .text.bottom {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.stats {
+  border: 1px solid $colorGrayLight;
+  height: 75px;
+  display: flex;
+  box-sizing: border-box;
+  color: $colorGrayDark;
+  align-content: center;
+  justify-content: center;
+
+  .stats-item {
+    width: 25%;
+    flex-basis: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .stats-item-icon {
+      font-size: $f4;
+      margin-right: 4px;
+    }
+
+    .stats-item-text {
+      font-size: $f5;
+    }
+  }
+}
+
+.whisky-filters {
+  .whisky-filters-toggle {
+    position: fixed;
+    width: 72px;
+    height: 72px;
+    right: 5%;
+    bottom: 5%;
+    background: $colorYellow;
+    border: 1px solid $colorYellow;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(100, 100, 100, 0.4);
+    cursor: pointer;
+    transition: all 0.33s $cubicBezier;
+
+    &:hover {
+      background: $colorYellowDark;
+      border: 1px solid $colorYellowDark;
+    }
+
+    &.visible {
+      z-index: 1000;
+      background: $colorBlack;
+      border: 1px solid $colorGrayDark;
+      color: $colorGrayDark;
+      box-shadow: none;
+
+      &:hover {
+        opacity: 0.7;
+        box-shadow: 0 0 25px rgba(100, 100, 100, 0.2);
+      }
+    }
+  }
+
+  .whisky-filters-selectors {
+    position: fixed;
+    width: 90%;
+    height: calc(100% - 150px);
+    padding: 50px 5% 0;
+    left: 0;
+    top: 100px;
+    display: none;
+    background: $colorBlack;
+    cursor: pointer;
+    transition: all 0.33s $cubicBezier;
+    flex-direction: column;
+
+    &.visible {
+      display: flex;
+    }
+
+    .type {
+      padding: 25px 0;
+      display: flex;
+      color: $colorYellow;
+      transition: all 0.33s $cubicBezier;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      .material-icons {
+        margin-right: 20px;
+        font-size: $f3;
+      }
+
+      p {
+        font-size: $f4;
+        line-height: $f3;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .list {
+    .list-item {
+      width: 23%;
+      flex-basis: 23%;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .list {
+    .list-item {
+      width: 31.33%;
+      flex-basis: 31.33%;
+      
+      > a {
+        .content {
+          .rating {
+            .rating-number {
+              font-size: $f2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .list {
+    .list-item {
+      width: 48%;
+      flex-basis: 48%;
+    }
+  }
+  .chart .datum .bar {
+    .text.top {
+      font-size: $f4;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 50%;
+      }
+    }
+    .text.bottom {
+      width: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .list {
+    .list-item {
+      width: 98%;
+      flex-basis: 98%;
+
+      > a {
+        display: flex;
+
+        .image {
+          width: 76px;
+        }
+
+        .content {
+          width: calc(100% - 76px);
+          margin-top: 0;
+
+          .rating {
+            .rating-number {
+              font-size: $f3;
+            }
+          }
+
+          .content-text {
+            text-align: left;
+            width: 100%;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

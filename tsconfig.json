@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "incremental": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "es2015"],
+    "baseUrl": "./",
+    "outDir": "dist"
+  },
+  "include": [
+    "**.ts",
+    "**/*.test.ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}
