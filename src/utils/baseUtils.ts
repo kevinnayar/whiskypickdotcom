@@ -77,4 +77,27 @@ export function getWhiskiesForUser(whiskies: TypeWhisky[], userId: string): Type
   return sorted;
 }
 
+export type SortTuple = [string, string, 'ASC'|'DESC'];
+
+export function sortWhiskies(sort: SortTuple, whiskies: TypeWhisky[]): TypeWhisky[] {
+  return [...whiskies].sort((a, b) => {
+    const dir = sort[2];
+    if (a[sort[0]] > b[sort[0]]) return dir === 'ASC' ? 1 : -1;
+    if (a[sort[0]] < b[sort[0]]) return dir === 'ASC' ? -1 : 1;
+    return 0;
+  });
+}
+
+export function updateTypes(type: string, types: { [key: string]: boolean }): { [key: string]: boolean } {
+  return { ...types, [type]: !types[type] };
+}
+
+export function filterWhiskies(
+  types: { [key: string]: boolean },
+  whiskies: TypeWhisky[],
+): TypeWhisky[] {
+  const filters = Object.keys(types).filter((key) => types[key] === true);
+  return whiskies.filter((w) => filters.includes(w.type));
+}
+
 

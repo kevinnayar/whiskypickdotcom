@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { TypeWhisky } from '../../types/baseTypes';
+import { 
+  sortWhiskies,
+  updateTypes,
+  filterWhiskies,
+  SortTuple,
+} from '../../utils/baseUtils';
 
 type TypeToggleProps = {
   visible: boolean,
@@ -16,26 +22,6 @@ function WhiskyFiltersToggle(props: TypeToggleProps) {
       <i className="material-icons">{props.visible ? 'close' : 'menu'}</i>
     </div>
   );
-}
-
-function updateTypes(type: string, types: { [key: string]: boolean }): { [key: string]: boolean } {
-  return { ...types, [type]: !types[type] };
-}
-
-function filterWhiskies(types: { [key: string]: boolean }, whiskies: TypeWhisky[]): TypeWhisky[] {
-  const filters = Object.keys(types).filter(key => types[key] === true);
-  return whiskies.filter((w) => filters.includes(w.type));
-}
-
-type SortTuple = [string, string, 'ASC'|'DESC'];
-
-export function sortWhiskies(sort: SortTuple, whiskies: TypeWhisky[]): TypeWhisky[] {
-  return [...whiskies].sort((a, b) => {
-    const dir = sort[2];
-    if (a[sort[0]] > b[sort[0]]) return dir === 'ASC' ? 1 : -1;
-    if (a[sort[0]] < b[sort[0]]) return dir === 'ASC' ? -1 : 1;
-    return 0;
-  });
 }
 
 type TypeSelectorsProps = {
@@ -55,7 +41,7 @@ function WhiskyFiltersSelectors(props: TypeSelectorsProps) {
   return (
     <div className={`whisky-filters-selectors ${props.visible ? 'visible' : 'hidden'}`}>
       <div className="selectors-group">
-        <h2>Filter by:</h2>
+        <h2>Filter by</h2>
         {Object.keys(props.types).map((type) => {
           const isSelected = props.types[type] === true;
           return (
@@ -65,8 +51,10 @@ function WhiskyFiltersSelectors(props: TypeSelectorsProps) {
               onClick={(e) => {
                 const updatedTypes = updateTypes(type, props.types);
                 props.setTypes(updatedTypes);
+
                 const filtered = filterWhiskies(updatedTypes, props.whiskiesAll);
-                props.updateFilteredWhiskies(filtered);
+                const sorted = sortWhiskies(props.sort, filtered);
+                props.updateFilteredWhiskies(sorted);
               }}
             >
               <i className="material-icons">{isSelected ? 'check_circle' : 'radio_button_unchecked'}</i>
@@ -76,7 +64,7 @@ function WhiskyFiltersSelectors(props: TypeSelectorsProps) {
         })}
       </div>
       <div className="selectors-group">
-        <h2>Sort by:</h2>
+        <h2>Sort by</h2>
         {props.allSorts.map((sort) => {
           const isSelected = props.sort[0] === sort[0] && props.sort[2] === sort[2];
           return (
@@ -84,8 +72,8 @@ function WhiskyFiltersSelectors(props: TypeSelectorsProps) {
               className={`selector ${isSelected ? 'selected' : 'unselected'}`}
               key={sort[1]}
               onClick={(e) => {
-                props.setSort(sort);
                 const sorted = sortWhiskies(sort, props.whiskiesFiltered);
+                props.setSort(sort);
                 props.updateFilteredWhiskies(sorted);
               }}
             >

@@ -1,5 +1,5 @@
 import firebase from '../../config/firebase';
-import { sortWhiskies } from '../../components/WhiskyFilters/WhiskyFilters';
+import { sortWhiskies } from '../../utils/baseUtils';
 import {
   WHISKIES_GET_ALL_REQUESTED,
   WHISKIES_GET_ALL_SUCCEEDED,
