@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 const Menu = React.memo(() => {
   return (
     <div className="menu">
+      <NavLink exact to="/">
+        <i className="material-icons">home</i>
+        <p>Home</p>
+      </NavLink>
       <NavLink to="/whiskies">
         <i className="material-icons">local_bar</i>
         <p>Whiskies</p>

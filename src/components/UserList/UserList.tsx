@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../../components-core/Loader/Loader';
-// @ts-ignore
-import { Image } from 'cloudinary-react';
 import { TypeApiXferStatus, TypeUser } from '../../types/baseTypes';
 
 type TypeItemProps = {
@@ -11,17 +9,12 @@ type TypeItemProps = {
 
 const UserItem = React.memo((props: TypeItemProps) => {
   const id = props.user.userId.replace('user_', '');
+  const imgSrc = `https://firebasestorage.googleapis.com/v0/b/whiskey-b6e58.appspot.com/o/users%2F${id}.jpg?alt=media`;
   return (
     <div className="list-item user-list-item">
       <Link to={`/users/${id}`}>
         <div className="image">
-          <Image
-            cloudName="kevinnayar"
-            publicId={`users/${id}.jpg`}
-            width="300"
-            crop="scale"
-            alt={props.user.name}
-          />
+          <img src={imgSrc} width="300" alt={props.user.name} />
         </div>
         <div className="content">
           <div className="content-text">

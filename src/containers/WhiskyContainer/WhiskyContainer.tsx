@@ -15,6 +15,7 @@ type TypeProps = {
 };
 
 function WhiskyContainer(props: TypeProps) {
+  // @ts-ignore
   const { whiskyId } = useParams();
 
   useEffect(() => {

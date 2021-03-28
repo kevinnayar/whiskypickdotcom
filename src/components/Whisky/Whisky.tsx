@@ -4,8 +4,6 @@ import Loader from '../../components-core/Loader/Loader';
 import Chart from '../../components-core/Chart/Chart';
 import Rating from '../../components-core/Rating/Rating';
 import Stats from '../../components-core/Stats/Stats';
-// @ts-ignore
-import { Image } from 'cloudinary-react';
 import { TypeApiXferStatus, TypeWhisky } from '../../types/baseTypes';
 
 type TypeStatsItem = {
@@ -54,16 +52,12 @@ const Whisky = React.memo((props: TypeProps) => {
     },
   ];
 
+  const imgSrc = `https://firebasestorage.googleapis.com/v0/b/whiskey-b6e58.appspot.com/o/whiskies%2F${props.whisky.whiskyId}.jpg?alt=media`;
+
   return (
     <div className="item whisky-item">
       <div className="image">
-        <Image
-          cloudName="kevinnayar"
-          publicId={`whiskies/${props.whisky.whiskyId}.jpg`}
-          width="300"
-          crop="scale"
-          alt={`${props.whisky.brand} - ${props.whisky.name}`}
-        />
+        <img src={imgSrc} width="300" alt={`${props.whisky.brand} - ${props.whisky.name}`} />
       </div>
       <div className="content">
         <div className="content-text">

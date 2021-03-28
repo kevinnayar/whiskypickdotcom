@@ -2,29 +2,22 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../../components-core/Loader/Loader';
 import Rating from '../../components-core/Rating/Rating';
-// @ts-ignore
-import { Image } from 'cloudinary-react';
 import { TypeApiXferStatus, TypeWhisky } from '../../types/baseTypes';
 
 type TypeItemProps = {
   whisky: TypeWhisky;
 };
 
-const WhiskyItem = React.memo((props: TypeItemProps) => {
+export const WhiskyItem = React.memo((props: TypeItemProps) => {
   const id = props.whisky.whiskyId.replace('whisky_', '');
   // @ts-ignore can be TypeWhiskyWithMyRating though not typed as such
   const rating = props.whisky.myRating ? props.whisky.myRating : props.whisky.averageRating;
+  const imgSrc = `https://firebasestorage.googleapis.com/v0/b/whiskey-b6e58.appspot.com/o/whiskies%2F${props.whisky.whiskyId}.jpg?alt=media`;
   return (
     <div className="list-item whisky-list-item">
       <Link to={`/whiskies/${id}`}>
         <div className="image">
-          <Image
-            cloudName="kevinnayar"
-            publicId={`whiskies/${props.whisky.whiskyId}.jpg`}
-            width="300"
-            crop="scale"
-            alt={`${props.whisky.brand} - ${props.whisky.name}`}
-          />
+          <img src={imgSrc} width="300" alt={`${props.whisky.brand} - ${props.whisky.name}`} />
         </div>
         <div className="content">
           <Rating rating={rating} />

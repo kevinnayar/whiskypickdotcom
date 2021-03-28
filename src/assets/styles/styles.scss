@@ -110,6 +110,7 @@ a {
         text-align: center;
         font-size: 16px;
         background: white;
+        color: $colorGrayDark;
         border: 1px solid $colorGrayLight;
         border-radius: 50%;
         transition: all 0.33s $cubicBezier;
@@ -121,16 +122,20 @@ a {
 
       &:hover {
         i {
-          background: $colorGrayMid;
-          border: 1px solid $colorGrayMid;
+          background: $colorGrayLight;
+          border: 1px solid $colorGrayLight;
         }
       }
 
       &.active {
         i {
-          background: $colorGrayLight;
-          color: $colorGrayDark;
-          border: 1px solid $colorGrayLight;
+          background: $colorYellow;
+          color: $colorBlack;
+          border: 1px solid $colorYellow;
+
+          &:hover {
+            background: $colorYellowDark;
+          }
         }
       }
     }
@@ -161,6 +166,39 @@ a {
 .list {
   display: flex;
   flex-wrap: wrap;
+
+  .featured-title {
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 48px;
+    font-size: $f2;
+  }
+
+  .main-btn {
+    flex-basis: 100%;
+    margin: 48px auto 160px;
+    font-size: $f2;
+    display: flex;
+
+    a {
+      background: $colorYellow;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-family: $fontsPrimary;
+      font-size: $f3;
+      font-weight: bold;
+      width: 300px;
+      margin: 0 auto;
+      height: 60px;
+      transition: all 0.33s $cubicBezier;
+
+      &:hover {
+        background: $colorYellowDark;
+      }
+    }
+  }
 
   .list-item {
     width: 18%;
@@ -214,6 +252,10 @@ a {
 
   .whisky-list-item > a .content .content-text {
     text-align: left;
+  }
+
+  &.featured-list {
+    margin-top: calc(52px + 5%);
   }
 }
 
@@ -505,5 +547,65 @@ a {
   }
 }
 
+.admin {
+  display: flex;
+  align-content: space-around;
+  justify-content: center;
+  background: rgb(30, 30, 30);
+  margin-top: 0;
+  padding-bottom: 100px;
+  padding-top: calc(100px + 5%);
 
+  form,
+  pre {
+    width: 460px;    
+    font-size: 1.6em;
+  }
 
+  pre {
+    margin-left: 30px;
+    padding: 20px;
+    font-size: 1.6em;
+    font-family: monospace;
+    line-height: 1.4;
+    background: rgb(56, 54, 52);
+    color: rgb(78, 201, 176);
+    border-radius: 4px;
+  }
+
+  .input-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: monospace;
+
+    label {
+      width: 120px;
+      color: rgb(78, 201, 176);
+    }
+
+    input,
+    textarea {
+      width: 300px;
+      background: rgb(56, 54, 52);
+      outline: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 4px 12px;
+      color: rgb(78, 201, 176);
+      font-family: monospace;
+
+      &:focus {
+        border-color: rgb(78, 201, 176);
+      }
+    }
+
+    input {
+      height: 30px;
+    }
+
+    textarea {
+      height: 200px;
+    }    
+  }
+}

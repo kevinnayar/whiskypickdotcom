@@ -20,6 +20,7 @@ type TypeProps = {
 };
 
 function UserContainer(props: TypeProps) {
+  // @ts-ignore
   const { userId } = useParams();
 
   useEffect(() => {

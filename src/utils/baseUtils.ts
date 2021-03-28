@@ -80,7 +80,7 @@ export function getWhiskiesForUser(whiskies: TypeWhisky[], userId: string): Type
 export type SortTuple = [string, string, 'ASC'|'DESC'];
 
 export function sortWhiskies(sort: SortTuple, whiskies: TypeWhisky[]): TypeWhisky[] {
-  return [...whiskies].sort((a, b) => {
+  return whiskies.sort((a, b) => {
     const dir = sort[2];
     if (a[sort[0]] > b[sort[0]]) return dir === 'ASC' ? 1 : -1;
     if (a[sort[0]] < b[sort[0]]) return dir === 'ASC' ? -1 : 1;
@@ -101,3 +101,6 @@ export function filterWhiskies(
 }
 
 
+export function getTopRatedWhiskies(whiskies: TypeWhisky[], limit: number = 5): TypeWhisky[] {
+  return whiskies.sort((a, b) => b.averageRating - a.averageRating).slice(0, limit);
+}
