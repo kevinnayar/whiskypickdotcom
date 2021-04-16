@@ -22,27 +22,27 @@ const FeaturedLists = React.memo((props: TypeProps) => {
 
   return (
     <div className="list featured-list">
-      <h2 className="featured-title">Top Bourbons</h2>
+      <h2 className="featured-title"><span>★</span> Top Bourbons</h2>
       {topBourbons.map((whisky) => (
         <WhiskyItem key={whisky.whiskyId} whisky={whisky} />
       ))}
 
-      <h2 className="featured-title">Top Irish Whiskies</h2>
+      <h2 className="featured-title"><span>★</span> Top Irish Whiskies</h2>
       {topIrishes.map((whisky) => (
         <WhiskyItem key={whisky.whiskyId} whisky={whisky} />
       ))}
 
-      <h2 className="featured-title">Top Rye Whiskies</h2>
+      <h2 className="featured-title"><span>★</span> Top Rye Whiskies</h2>
       {topRyes.map((whisky) => (
         <WhiskyItem key={whisky.whiskyId} whisky={whisky} />
       ))}
 
-      <h2 className="featured-title">Top Scotches</h2>
+      <h2 className="featured-title"><span>★</span> Top Scotches</h2>
       {topScotches.map((whisky) => (
         <WhiskyItem key={whisky.whiskyId} whisky={whisky} />
       ))}
 
-      <h2 className="featured-title">Top Generic Single Malts</h2>
+      <h2 className="featured-title"><span>★</span> Top Single Malts</h2>
       {topWhiskies.map((whisky) => (
         <WhiskyItem key={whisky.whiskyId} whisky={whisky} />
       ))}

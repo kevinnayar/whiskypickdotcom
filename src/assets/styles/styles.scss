@@ -166,12 +166,17 @@ a {
 .list {
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 160px;
 
   .featured-title {
     flex-basis: 100%;
-    text-align: center;
+    text-align: left;
     margin-top: 48px;
-    font-size: $f2;
+    font-size: $f1;
+
+    span {
+      color: $colorYellowDark;
+    }
   }
 
   .main-btn {
@@ -264,8 +269,8 @@ a {
     margin: 0 auto 20px;
     overflow: hidden;
     border-radius: 50%;
-    width: 160px;
-    height: 160px;
+    width: 260px;
+    height: 260px;
     border: 12px solid $colorGrayLight;
     box-sizing: border-box;
 
@@ -379,7 +384,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 25px rgba(100, 100, 100, 0.6);
+    box-shadow: 0 0 15px rgba(100, 100, 100, 0.2);
     cursor: pointer;
     transition: all 0.33s $cubicBezier;
 
@@ -505,7 +510,8 @@ a {
     }
   }
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 500px) {  
   .list {
     .list-item {
       width: 98%;
@@ -535,6 +541,19 @@ a {
           }
         }
       }
+    }
+    .featured-title {
+      font-size: $f2;
+    }
+  }
+
+  .item {
+    margin-left: auto;
+    margin-right: auto;
+
+    .image {
+      width: 160px;
+      height: 160px;
     }
   }
   .whisky-filters .whisky-filters-selectors.visible .selectors-group {
