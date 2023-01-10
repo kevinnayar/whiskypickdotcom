@@ -61,7 +61,7 @@
     "cloudinary-react": "^1.2.1",
     "dotenv": "^8.2.0",
     "firebase": "^7.2.1",
-    "firebase-admin": "^9.5.0",
+    "firebase-admin": "^11.4.1",
     "normalize.css": "^8.0.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
