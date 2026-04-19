@@ -17,20 +17,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
-    --primary: 215 51% 25%;
-    --primary-foreground: 0 0% 100%;
-
-    --background: 215 51% 12%;
-    --foreground: 0 0% 100%;
-    --card: 217 33% 18%;
-    --card-foreground: 0 0% 100%;
-    --muted: 217 22% 28%;
-    --muted-foreground: 0 0% 88%;
-    --border: 217 22% 28%;
-  }
-
-  * {
+* {
     @apply border-border;
   }
 
