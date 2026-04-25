@@ -1,13 +1,17 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  darkMode: false,
+  darkMode: 'class',
   content: [
     './pages/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+      },
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary) / <alpha-value>)',

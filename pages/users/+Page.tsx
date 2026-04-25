@@ -27,20 +27,42 @@ export default function UsersPage() {
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Users</h1>
-        <input
-          type="search"
-          placeholder="Search users…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="px-3 py-1.5 text-sm bg-muted border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary w-48"
-        />
+      {/* Editorial page header */}
+      <div className="border-b border-foreground">
+        <div className="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
+                The Community
+              </span>
+              <h1 className="mt-2 font-serif text-4xl font-bold md:text-5xl">
+                Our <span className="italic">Tasters</span>
+              </h1>
+              <p className="mt-2 font-sans text-xs uppercase tracking-widest text-muted-foreground">
+                {filtered.length} members
+              </p>
+            </div>
+
+            <input
+              type="search"
+              placeholder="Search members…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="font-sans text-sm bg-background border-b border-foreground/30 px-0 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors w-56 md:self-end"
+            />
+          </div>
+        </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-        {filtered.map((u) => (
-          <UserCard key={u.id} userId={u.id} name={u.name} ratingCount={u.ratingCount} />
-        ))}
+
+      {/* Grid */}
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+        <div className="border border-foreground/20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-px bg-foreground/15">
+          {filtered.map((u) => (
+            <div key={u.id} className="bg-background">
+              <UserCard userId={u.id} name={u.name} ratingCount={u.ratingCount} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -4,24 +4,42 @@
 
 @layer base {
   :root {
-    --primary: 220 68% 81%;          /* #acc2ef */
-    --primary-foreground: 215 51% 12%;
+    /* Light mode — primary focus */
+    --primary: 0 0% 7%;              /* #111111 near-black */
+    --primary-foreground: 0 0% 98%;  /* #FAFAFA near-white */
 
-    --background: 215 51% 12%;       /* #0F1C2E */
-    --foreground: 0 0% 100%;         /* #FFFFFF */
-    --card: 217 33% 18%;             /* #1f2b3e */
-    --card-foreground: 0 0% 100%;
-    --muted: 217 22% 28%;            /* #374357 */
-    --muted-foreground: 0 0% 88%;    /* #e0e0e0 */
-    --border: 217 22% 28%;           /* #374357 */
-    --radius: 0.5rem;
+    --background: 0 0% 100%;         /* #FFFFFF pure white */
+    --foreground: 0 0% 9%;           /* #171717 near-black */
+    --card: 0 0% 98%;                /* #FAFAFA off-white */
+    --card-foreground: 0 0% 9%;      /* #171717 near-black */
+    --muted: 0 0% 95%;               /* #F2F2F2 light gray */
+    --muted-foreground: 0 0% 40%;    /* #666666 medium gray */
+    --border: 0 0% 87%;              /* #DEDEDE light border */
+    --radius: 0rem;
   }
 
-* {
+  .dark {
+    --primary: 0 0% 93%;             /* #EDEDED near-white */
+    --primary-foreground: 0 0% 9%;   /* #171717 near-black */
+
+    --background: 0 0% 6%;           /* #0F0F0F very dark */
+    --foreground: 0 0% 92%;          /* #EBEBEB near-white */
+    --card: 0 0% 10%;                /* #1A1A1A dark gray */
+    --card-foreground: 0 0% 92%;     /* #EBEBEB near-white */
+    --muted: 0 0% 15%;               /* #262626 dark muted */
+    --muted-foreground: 0 0% 58%;    /* #949494 medium gray */
+    --border: 0 0% 20%;              /* #333333 dark border */
+  }
+
+  * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
