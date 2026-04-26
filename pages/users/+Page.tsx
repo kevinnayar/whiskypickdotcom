@@ -1,47 +1,63 @@
 import { useState, useMemo } from 'react'
-import { users } from '../../src/data/users'
-import { whiskies } from '../../src/data/whiskies'
-import { UserCard } from '../../src/components/user/UserCard'
-import type { Whisky } from '../../src/types'
+import { allUsers } from '../../src/utils/data'
+import { Masthead } from '../../src/components/Masthead'
+import { UserCard } from '../../src/components/UserCard'
+import { Footer } from '../../src/components/Footer'
+import { Crumbs } from '../../src/components/Crumbs'
+import { Icon } from '../../src/components/Icon'
 
-const whiskyList = Object.values(whiskies) as Whisky[]
-
-function getRatingCount(userId: string): number {
-  return whiskyList.filter((w) => userId in w.ratings).length
-}
-
-const ALL_USERS = Object.entries(users).map(([id, name]) => ({
-  id,
-  name,
-  ratingCount: getRatingCount(id),
-}))
-
-export default function UsersPage() {
-  const [search, setSearch] = useState('')
+export default function Page() {
+  const [q, setQ] = useState('')
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return ALL_USERS
-    const q = search.toLowerCase()
-    return ALL_USERS.filter((u) => u.name.toLowerCase().includes(q))
-  }, [search])
+    const s = q.trim().toLowerCase()
+    if (!s) return allUsers
+    return allUsers.filter(u =>
+      u.name.toLowerCase().includes(s) ||
+      u.bio.toLowerCase().includes(s) ||
+      u.handle.toLowerCase().includes(s)
+    )
+  }, [q])
 
   return (
-    <div>
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Users</h1>
-        <input
-          type="search"
-          placeholder="Search users…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="px-3 py-1.5 text-sm bg-muted border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary w-48"
-        />
+    <>
+      <Crumbs items={[{ label: 'Home', href: '/' }, { label: 'Tasters' }]} />
+      <Masthead
+        eyebrow="The standing tasters"
+        title="The people who<br/><em>keep score.</em>"
+        dek="Our panel of tasters — the nose, palate, and opinions behind every number on this site. Nobody here agrees on everything, and that is the point."
+        right={
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.08em', color: 'var(--mute)', textAlign: 'right', lineHeight: 1.8 }}>
+            <div>{allUsers.length} TASTERS ON RECORD</div>
+            <div>MATCHING · {filtered.length}</div>
+          </div>
+        }
+      />
+
+      <div className="container">
+        <div className="search-row">
+          <Icon name="search" size={22} />
+          <input
+            className="search-input"
+            placeholder="Search by name, handle, or bio…"
+            value={q}
+            onChange={e => setQ(e.target.value)}
+          />
+          {q && <button className="pill" onClick={() => setQ('')}>Clear</button>}
+        </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-        {filtered.map((u) => (
-          <UserCard key={u.id} userId={u.id} name={u.name} ratingCount={u.ratingCount} />
-        ))}
+
+      <div className="container" style={{ padding: '32px 0' }}>
+        {filtered.length === 0 ? (
+          <div className="empty">No tasters match "{q}".</div>
+        ) : (
+          <div className="user-grid">
+            {filtered.map(u => <UserCard key={u.id} user={u} />)}
+          </div>
+        )}
       </div>
-    </div>
+
+      <div className="container"><Footer /></div>
+    </>
   )
 }

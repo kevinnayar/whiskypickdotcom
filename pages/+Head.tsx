@@ -5,9 +5,11 @@ export default function Head() {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>WhiskyPick</title>
       <meta name="description" content="Community whisky ratings and reviews" />
-      {/* Set dark mode class before first paint to avoid flash */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       <script dangerouslySetInnerHTML={{
-        __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}})()`,
+        __html: `(function(){var t=localStorage.getItem('wp.theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t===null&&d)){document.documentElement.setAttribute('data-theme','dark')}})()`,
       }} />
     </>
   )
