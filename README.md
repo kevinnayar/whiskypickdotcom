@@ -5,7 +5,7 @@ Community whisky ratings site. Built with React + Vike (SSR), Tailwind CSS, and 
 ## Stack
 
 - **Framework:** [Vike](https://vike.dev) (React SSR, pre-rendered)
-- **Styling:** Tailwind CSS v3
+- **Styling:** Custom CSS
 - **Hosting:** Cloudflare Pages
 
 ## Development
