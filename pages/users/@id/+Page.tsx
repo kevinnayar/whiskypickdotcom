@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useData } from 'vike-react/useData'
 import type { Data } from './+data'
-import { enrichWhisky, allUsers, categories } from '../../../src/utils/data'
+import { enrichWhisky, allUsers, categories, displayName } from '../../../src/utils/data'
 import { WhiskyCard } from '../../../src/components/WhiskyCard'
 import { Footer } from '../../../src/components/Footer'
 import { Crumbs } from '../../../src/components/Crumbs'
@@ -47,14 +47,14 @@ export default function Page() {
       <Crumbs items={[
         { label: 'Home', href: '/' },
         { label: 'Tasters', href: '/users' },
-        { label: name },
+        { label: displayName(name) },
       ]} />
 
       <div className="container profile-head">
         <div className="avatar-lg" style={{ backgroundImage: `url(${getUserImage(userId)})` }} />
         <div>
           <div className="smallcaps muted">Standing taster</div>
-          <h1>{name}</h1>
+          <h1>{displayName(name)}</h1>
           <div className="profile-stats">
             <div className="stat"><span className="num">{rated.length}</span><span className="lbl">Tastings logged</span></div>
             <div className="stat"><span className="num">{avgGiven.toFixed(1)}</span><span className="lbl">Avg score given</span></div>
@@ -91,7 +91,7 @@ export default function Page() {
         <div className="container">
           <div className="section-head">
             <span className="num-label">LOG · {rated.length} ENTRIES</span>
-            <h2 className="title"><em>{name.split(' ')[0]}'s log.</em></h2>
+            <h2 className="title"><em>{displayName(name).split(' ')[0]}'s log.</em></h2>
             <div className="pill-group">
               <span className="sort-label">SORT</span>
               <button className={'pill' + (sortBy === 'score' ? ' active' : '')} onClick={() => setSortBy('score')}>By score</button>

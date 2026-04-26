@@ -68,3 +68,9 @@ export const allUsers: EnrichedUser[] = Object.entries(
 })
 
 export const categories = ['Scotch', 'Bourbon', 'Rye', 'Irish', 'Whisky'] as const
+
+export function displayName(fullName: string): string {
+  const parts = fullName.trim().split(' ')
+  if (parts.length < 2) return fullName
+  return parts[0] + ' ' + parts[parts.length - 1][0] + '.'
+}

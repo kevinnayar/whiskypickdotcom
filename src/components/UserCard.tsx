@@ -1,4 +1,5 @@
 import type { EnrichedUser } from '../utils/data'
+import { displayName } from '../utils/data'
 import { getUserImage } from '../utils/images'
 
 export function UserCard({ user }: { user: EnrichedUser }) {
@@ -6,7 +7,7 @@ export function UserCard({ user }: { user: EnrichedUser }) {
     <a className="ucard" href={`/users/${user.id}`}>
       <div className="avatar" style={{ backgroundImage: `url(${getUserImage(user.id)})` }} />
       <div>
-        <div className="name">{user.name}</div>
+        <div className="name">{displayName(user.name)}</div>
         <div className="handle">{user.handle}{user.joined && user.joined !== '—' ? ` · joined ${user.joined}` : ''}</div>
       </div>
       {user.bio ? <div className="bio">{user.bio}</div> : null}

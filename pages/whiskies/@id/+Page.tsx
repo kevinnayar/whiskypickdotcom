@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useData } from 'vike-react/useData'
 import type { Data } from './+data'
-import { enrichWhisky, allWhiskies, allUsers } from '../../../src/utils/data'
+import { enrichWhisky, allWhiskies, allUsers, displayName } from '../../../src/utils/data'
 import { WhiskyCard } from '../../../src/components/WhiskyCard'
 import { Footer } from '../../../src/components/Footer'
 import { Crumbs } from '../../../src/components/Crumbs'
@@ -24,7 +24,7 @@ export default function Page() {
     const user = allUsers.find(u => u.id === s.userId)
     return {
       userId: s.userId,
-      name: user?.name ?? s.userId,
+      name: user ? displayName(user.name) : s.userId,
       handle: user?.handle ?? '',
       score: s.score,
       delta: Math.round((s.score - whisky.avgScore) * 10) / 10,
